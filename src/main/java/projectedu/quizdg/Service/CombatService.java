@@ -49,7 +49,15 @@ public class CombatService {
 
     public Integer calculateMonsterDamage(Monster monster, Question question, Player player, double extraMultiplier){
 
+        int monsterBaseAttack = (monster.getDifficultyLevel()*3)+(question.getDifficultyLevel()*2);
 
+        int playerDefense = player.getArmadura()* player.getLevel();
+
+        int rawDamage = monsterBaseAttack-playerDefense;
+
+        rawDamage = Math.max(1, rawDamage);
+
+        return (int) (rawDamage* extraMultiplier);
 
     }
 
